@@ -1,0 +1,28 @@
+{
+  "name": "sik-johnny-five",
+  "version": "0.0.0",
+  "description": "Fiddling around with the Sparkfun Inventor's Kit examples, except written in JavaScript instead.",
+  "main": "01.js",
+  "dependencies": {
+    "johnny-five": "^0.8.34",
+    "q-foreach": "^0.0.3",
+    "q": "^1.1.2",
+    "lodash-node": "^2.4.1",
+    "random-js": "^1.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boneskull/sik-johnny-five.git"
+  },
+  "author": "Christopher Hiller <chiller@badwing.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/boneskull/sik-johnny-five/issues"
+  },
+  "homepage": "https://github.com/boneskull/sik-johnny-five",
+  "private": true
+}

@@ -1,17 +1,17 @@
 'use strict';
 
 var five = require("johnny-five"),
-  board = new five.Board();
+  Board = five.Board,
+  Sensor = five.Sensor,
+  Led = five.Led;
 
-board.on("ready", function () {
+new Board().on("ready", function () {
 
-  var pin = new five.Pin('A0'),
-    led = new five.Led(13);
+  var pot = new Sensor('A0'),
+    led = new Led(13);
 
-  setInterval(function() {
-    pin.query(function(data) {
-      led.strobe(data.value);
-    });
-  }, 1000);
+  pot.on('change', function() {
+    led.strobe(this.value);
+  });
 
 });

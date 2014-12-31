@@ -17,7 +17,7 @@ new Board().on('ready', function () {
     });
 
   lcd.on('ready', function () {
-    lcd.createChar('deg', [12,18,18,18,12,0,0]);
+    lcd.createChar('deg', [12, 18, 18, 18, 12, 0, 0]);
     lcd.print('Ready!');
     tmp.on('change', function () {
       var f = Math.floor(tmp.fahrenheit * 100) / 100,

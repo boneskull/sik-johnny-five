@@ -37,9 +37,9 @@ new Board().on('ready', function () {
     // when the temperature changes, display F value on line 1 and C value on line 2.
     tmp.on('change', function () {
       lcd.clear()
-        .cursor(0, 0);
-        .print(format('%d :deg:F', round(tmp.fahrenheit)));
-        .cursor(1, 0);
+        .cursor(0, 0)
+        .print(format('%d :deg:F', round(tmp.fahrenheit)))
+        .cursor(1, 0)
         .print(format('%d :deg:C', round(tmp.celsius)));
     });
     

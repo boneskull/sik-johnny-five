@@ -11,6 +11,10 @@ require('q-foreach')(Q);
 
 var MS = 200;
 
+/**
+ * Using the RGB LED, show red/green/blue/yellow/cyan/purple/white, then toggle off.
+ * @returns Promise
+ */
 var demoColors = function demoColors() {
   var pins = makepins.call(this, {
       red: 9,
@@ -93,6 +97,8 @@ var getValues = function getValues(color) {
  */
 var spectrum = function spectrum(rgbMode) {
   var show, hide, rgb, pins;
+  
+  // this is the easy way
   if (rgbMode) {
     rgb = new five.Led.RGB([9, 10, 11]);
     show = function showRGB(color) {
@@ -101,6 +107,8 @@ var spectrum = function spectrum(rgbMode) {
     hide = function hideRGB() {
       rgb.off();
     };
+    
+  // this is the hard way, if you're interested.
   } else {
     pins = {
       red: new Pin({addr: 9}),

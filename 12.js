@@ -82,7 +82,7 @@ new Board().on('ready', function () {
   /**
    * Starts the motor at given `speed`.
    * @param {number} [speed=128] Speed to start at
-   * @returns {Promise}
+   * @returns {Promise<Motor>}
    */
   var start = function start(speed) {
     speed = _.isUndefined(speed) ? DEFAULT_SPEED : speed;
@@ -93,7 +93,7 @@ new Board().on('ready', function () {
   /**
    * Sets the speed of the motor.  Starts it if not started.
    * @param {number} [value=128] Speed
-   * @returns {Promise}
+   * @returns {Promise<Motor>}
    */
   var speed = function speed(value) {
     value = _.isUndefined(value) ? DEFAULT_SPEED : value;
@@ -103,7 +103,7 @@ new Board().on('ready', function () {
 
   /**
    * Stops running motor.
-   * @returns {Promise}
+   * @returns {Promise<Motor>}
    */
   var stop = function stop() {
     motor.board.info('Motor', 'Stopping');

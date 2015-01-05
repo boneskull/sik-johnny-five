@@ -9,7 +9,7 @@ I make use of Promises here, which `johnny-five` does not natively support.
 # Resources
 
 - [Sparkfun Inventor's Kit](https://www.sparkfun.com/products/12060)
-- [SIK Guide Code](/sparkfun/SIK-Guide-Code) ([download zip](https://cdn.sparkfun.com/datasheets/Kits/SIK%20Guide%20Code%2032.zip))
+- [SIK Guide Code](/sparkfun/SIK-Guide-Code) ([download `.zip`](https://cdn.sparkfun.com/datasheets/Kits/SIK%20Guide%20Code%2032.zip))
 
 # Author
 

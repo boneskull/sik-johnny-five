@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * This is a thermometer.  Use the same setup as in example 15, but also add a TMP-36 unit connected to pin A0, as
+ * done in example 7.
+ */ 
+
 var five = require('johnny-five'),
   format = require('util').format,
   Board = five.Board,
@@ -10,24 +15,34 @@ new Board().on('ready', function () {
   var lcd = new LCD({
       pins: [12, 11, 5, 4, 3, 2]
     }),
+    
     tmp = new Temperature({
       pin: 'A0',
-      freq: 5000,
+      freq: 5000, // updates every 5s
       controller: 'tmp36'
-    });
+    }),
+    
+    /**
+     * Rounds a numeric value to 2 decimal places.
+     */
+    round = function round(value) {
+      return Math.floor(value * 100) / 100;
+    };
 
   lcd.on('ready', function () {
+    // create a "degree" character for the LCD to display.
     lcd.createChar('deg', [12, 18, 18, 18, 12, 0, 0]);
     lcd.print('Ready!');
+    
+    // when the temperature changes, display F value on line 1 and C value on line 2.
     tmp.on('change', function () {
-      var f = Math.floor(tmp.fahrenheit * 100) / 100,
-        c = Math.floor(tmp.celsius * 100) / 100;
-      lcd.clear();
-      lcd.cursor(0, 0);
-      lcd.print(format('%d :deg:F', f));
-      lcd.cursor(1, 0);
-      lcd.print(format('%d :deg:C', c));
+      lcd.clear()
+        .cursor(0, 0);
+        .print(format('%d :deg:F', round(tmp.fahrenheit)));
+        .cursor(1, 0);
+        .print(format('%d :deg:C', round(tmp.celsius)));
     });
+    
   });
   this.repl.inject({
     lcd: lcd

@@ -22,7 +22,19 @@ var demoColors = function demoColors() {
       white: ['red', 'green', 'blue']
     }),
 
+    /**
+     * Returns a function which will toggle Pin `on` to the "HIGH" position.  If the function receives
+     * a Pin parameter, `off`, it will first be turned to the "LOW" position.
+     * @param {Pin} [on] Pin to toggle on
+     * @returns Function
+     */
     toggle = function toggle(on) {
+      
+      /**
+       * Delay `MS` ms, turn Pin `off` to "LOW" (if present), then turn Pin `on` "HIGH".
+       * @param {Pin} [off] Pin to toggle off
+       * @returns Promise<Pin>
+       */
       return function (off) {
         return Q.delay(MS)
           .then(function () {
@@ -37,10 +49,12 @@ var demoColors = function demoColors() {
       };
     };
 
+  // toggle all pins off
   _.each(pins, function (pin) {
     pin.low();
   });
 
+  // toggle each pin, one at a time, then toggle the final pin off.
   return toggle(pins.red)()
     .then(toggle(pins.green))
     .then(toggle(pins.blue))
@@ -50,6 +64,11 @@ var demoColors = function demoColors() {
     .then(toggle());
 };
 
+/**
+ * Given an value in range 0-1023, return appropriate RGB decimal values.
+ * @param {number} color Color value
+ * @returns Array<number>
+ */
 var getValues = function getValues(color) {
   var redVal, greenVal, blueVal;
   if (color <= 255) {
@@ -69,8 +88,8 @@ var getValues = function getValues(color) {
 };
 
 /**
- * Spectrum of pretty rainbow colors
- * @param {boolean} rgbMode If this is true, use the johnny-five Led.RGB API instaed, which is a lot easier.  You cannot do both at once.  I don't know why yet.
+ * Display a spectrum of pretty rainbow colors
+ * @param {boolean} [rgbMode] If this is present, use the johnny-five Led.RGB API instead, which is a lot easier.
  */
 var spectrum = function spectrum(rgbMode) {
   var show, hide, rgb, pins;
@@ -103,7 +122,8 @@ var spectrum = function spectrum(rgbMode) {
       });
     };
   }
-
+  
+  // TODO not sure why this only goes to 768; read example again
   Q.forEach(_.range(0, 768), function (color) {
     show(color);
     return Q.delay(10);
@@ -113,6 +133,7 @@ var spectrum = function spectrum(rgbMode) {
 
 board.on("ready", function () {
 
+  // demo the basic colors then do a spectrum.
   demoColors().then(spectrum);
 
 });

@@ -11,6 +11,10 @@ var five = require('johnny-five'),
    */
   ADDR = 9,
 
+  /**
+   * Standard delay between actions
+   * @type {number}
+   */
   DELAY = 1000;
 
 new Board().on('ready', function () {
@@ -19,6 +23,12 @@ new Board().on('ready', function () {
       center: true
     }),
 
+    /**
+     * Returns a function which rotates a servo `deg` degrees over time `time`.
+     * @param {number} deg Degrees
+     * @param {number} [time] Time (ms)
+     * @returns Promise{Servo}
+     */
     to = function to(deg, time) {
       return function () {
         return Q(servo.to(deg, time))

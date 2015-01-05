@@ -27,7 +27,7 @@ new Board().on('ready', function () {
      * Returns a function which rotates a servo `deg` degrees over time `time`.
      * @param {number} deg Degrees
      * @param {number} [time] Time (ms)
-     * @returns Promise{Servo}
+     * @returns Promise<Servo>
      */
     to = function to(deg, time) {
       return function () {

@@ -18,10 +18,10 @@ new Board().on('ready', function () {
 
     tmp = new Temperature({
       pin: 'A0',
-      freq: 1000, // updates every 5s
+      freq: 1000, // updates every 1s
       controller: 'tmp36'
     }),
-    
+
     /**
      * Rounds a numeric value to 2 decimal places.
      */
